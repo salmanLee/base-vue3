@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "composite": true, // 可以被引用且增量
+    "skipLibCheck": true, // 跳过引用库检测
+    "module": "ESNext", // 生产代码的模块标准
+    "moduleResolution": "bundler", // 模块解析策略：bundler为ts5.0新增，适合vite
+    "allowSyntheticDefaultImports": true // 没有提供默认导出的时候也能导入默认，如：import Vue from 'vue';
+  },
+  "include": ["vite.config.ts"]
+}

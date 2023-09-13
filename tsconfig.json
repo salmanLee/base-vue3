@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // 编译后的目标语言版本
+    "useDefineForClassFields": true, // target:ES2021之前，编译class，采用Object.defineProperty定义成员
+    "module": "ESNext", // 生产代码的模块标准
+    "lib": [
+      // 引入声明文件库
+      "ES2020",
+      "DOM",
+      "DOM.Iterable" // 历史原因DOM库不包括Iterable，需要单独引入
+    ],
+    "skipLibCheck": true, // 不检查依赖库
+    /* Bundler mode */
+    "moduleResolution": "Bundler", // 模块解析策略：bundler为ts5.0新增，适合vite
+    "allowImportingTsExtensions": true, // ts5.0新增配置，允许ts文件使用特定于ts的扩展名（如 .ts、.mts 或 .tsx）相互导入
+    "resolveJsonModule": true, // 允许导入.json
+    "isolatedModules": true, // 隔离模块：因为 Vite 使用 esbuild 来转译 TypeScript，并受限于单文件转译的限制。
+    "noEmit": true, // 不输出文件，正常情况下tsc会将ts文件编译成js，这里不需要是因为vite本身做了对ts的编译，但性能原因没做类型检查，想tsc做类型检查
+    "jsx": "preserve", // preserve：输入<div />输出也是<div />，后缀采用.jsx
+    /* Linting */
+    "strict": true, // 严格的类型检查："use strick"；不允许隐式Any；不允许null、undefined付值给其他类型；不允许函数参双向协变；类的实例属性必须初始化；严格的bind/call/apply检查；不允许this有隐式Any；
+    "noUnusedLocals": true, // 未使用的声明被提示
+    "noUnusedParameters": true, // 未使用的函数参数被提示
+    "noFallthroughCasesInSwitch": true, // switch语句贯彻被提示
+    "noImplicitReturns": true, // if else每个分支都要有返回值
+    /* Other */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "#/*": ["src/types/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [
+    // 依赖的工程配置
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
